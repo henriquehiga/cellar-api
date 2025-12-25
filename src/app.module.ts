@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
+import { ParametroModule } from './application/parametro/parametro.module';
 
 @Module({
-  imports: [],
+  imports: [ParametroModule],
   controllers: [],
   providers: [],
 })
-export class AppModule {}
+export class AppModule { }
