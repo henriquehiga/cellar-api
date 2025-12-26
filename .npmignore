@@ -1,0 +1,29 @@
+# Source files
+src/
+test/
+
+# Config files
+.env
+.env.example
+.prettierrc
+.gitignore
+.dockerignore
+eslint.config.mjs
+nest-cli.json
+tsconfig.json
+tsconfig.build.json
+docker-compose*.yml
+docker-compose*.yaml
+Dockerfile
+
+# Development
+node_modules/
+.git/
+.vscode/
+coverage/
+*.log
+*.tgz
+
+# Keep only dist output
+!dist/@core/parametros/**
+!dist/application/parametro/strategies/**

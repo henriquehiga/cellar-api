@@ -1,11 +1,49 @@
 {
-  "name": "cellar-api",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
-  "private": true,
-  "license": "UNLICENSED",
+  "name": "@codehiga/cellar-parametros",
+  "version": "0.1.1",
+  "description": "SDK/Biblioteca para gerenciar parâmetros com diferentes provedores (Google Sheets, DynamoDB, etc.)",
+  "author": "henriquehiga",
+  "license": "MIT",
+  "main": "./dist/@core/parametros/index.js",
+  "types": "./dist/@core/parametros/index.d.ts",
+  "files": [
+    "dist/@core/parametros",
+    "dist/application/parametro/strategies",
+    "README.md"
+  ],
+  "keywords": [
+    "cellar",
+    "parametros",
+    "config",
+    "google-sheets",
+    "strategy-pattern",
+    "sdk"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henriquehiga/cellar-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/henriquehiga/cellar-api/issues"
+  },
+  "homepage": "https://github.com/henriquehiga/cellar-api#readme",
+  "exports": {
+    ".": {
+      "types": "./dist/@core/parametros/index.d.ts",
+      "import": "./dist/@core/parametros/index.js",
+      "require": "./dist/@core/parametros/index.js"
+    },
+    "./strategies/google-sheets": {
+      "types": "./dist/application/parametro/strategies/parametro-google-sheets.strategy.d.ts",
+      "import": "./dist/application/parametro/strategies/parametro-google-sheets.strategy.js",
+      "require": "./dist/application/parametro/strategies/parametro-google-sheets.strategy.js"
+    }
+  },
+  "peerDependencies": {
+    "googleapis": "^148.0.0"
+  },
   "scripts": {
+    "prepublishOnly": "npm run build",
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",

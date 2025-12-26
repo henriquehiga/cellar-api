@@ -26,9 +26,17 @@ CELLAR_PARAMETRO_PROVIDER=GOOGLE_SHEET
 
 ## Uso como SDK/Lib Standalone
 
+### Instalação via NPM
+
+```bash
+npm install @codehiga/cellar-parametros
+```
+
+### Uso após instalação
+
 ```typescript
-import { CellarParametroClient } from '@cellar/parametros';
-import { ParametroGoogleSheetsStrategy } from '@cellar/parametros/strategies';
+import { CellarParametroClient } from '@codehiga/cellar-parametros';
+import { ParametroGoogleSheetsStrategy } from '@codehiga/cellar-parametros/dist/application/parametro/strategies/parametro-google-sheets.strategy';
 
 // Configurar o client com a strategy desejada
 const client = new CellarParametroClient({
@@ -65,7 +73,7 @@ export class MeuService {
 ## Criar Strategy Customizada
 
 ```typescript
-import { ParametroStrategy, Parametro } from '@cellar/parametros';
+import type { ParametroStrategy, Parametro } from '@codehiga/cellar-parametros';
 
 interface MinhaOpcoes {
   endpoint: string;
@@ -78,4 +86,17 @@ export class MinhaCustomStrategy implements ParametroStrategy<MinhaOpcoes> {
     return Parametro.montar({ chave, valor: '...' });
   }
 }
+```
+
+## Publicação (para mantenedores)
+
+```bash
+# 1. Fazer o build
+npm run build
+
+# 2. Testar o que será publicado
+npm pack
+
+# 3. Publicar no NPM
+npm publish --access public
 ```
