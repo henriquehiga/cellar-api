@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
+import { CellarParametroClient } from "src/@core/parametros";
 import { ParametroStrategy } from "src/@core/parametros/strategies/parametro.strategy";
-import { ResgatarParametro } from "src/@core/parametros/use-cases/resgatar-parametro.use-case";
 import { ParametroController } from "./parametro.controller";
 import { ParametroSymbols } from "./parametro.symbols";
 import { ParametroGoogleSheetsStrategy } from "./strategies/parametro-google-sheets.strategy";
@@ -10,9 +10,11 @@ import { ParametroGoogleSheetsStrategy } from "./strategies/parametro-google-she
     controllers: [ParametroController],
     providers: [
         {
-            provide: ParametroSymbols.resgatarParametro,
+            provide: ParametroSymbols.cellarParametroClient,
             useFactory: (parametroStrategy: ParametroStrategy) => {
-                return new ResgatarParametro(parametroStrategy);
+                return new CellarParametroClient({
+                    strategy: parametroStrategy
+                });
             },
             inject: [ParametroSymbols.parametroStrategy]
         },

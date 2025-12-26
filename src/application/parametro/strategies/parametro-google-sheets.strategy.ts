@@ -11,8 +11,8 @@ export interface GoogleSheetsOpcoes {
 
 export class ParametroGoogleSheetsStrategy implements ParametroStrategy<GoogleSheetsOpcoes> {
     async resgatarParametro(chave: string, opcoes: GoogleSheetsOpcoes): Promise<Parametro | null> {
-        const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
-        const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+        const clientEmail = process.env.CELLAR_GOOGLE_CLIENT_EMAIL;
+        const privateKey = process.env.CELLAR_GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
 
         if (!clientEmail || !privateKey) {
             throw new Error('Credenciais do Google Sheets não configuradas');

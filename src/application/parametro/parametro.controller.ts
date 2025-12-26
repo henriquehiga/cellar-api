@@ -1,12 +1,12 @@
 import { Body, Controller, Inject, Post } from "@nestjs/common";
-import { ResgatarParametro } from "src/@core/parametros/use-cases/resgatar-parametro.use-case";
+import { CellarParametroClient } from "src/@core/parametros";
 import { ParametroSymbols } from "./parametro.symbols";
 
 @Controller('parametros')
 export class ParametroController {
 
-    @Inject(ParametroSymbols.resgatarParametro)
-    private readonly resgatarParametro: ResgatarParametro;
+    @Inject(ParametroSymbols.cellarParametroClient)
+    private readonly cellarParametroClient: CellarParametroClient;
 
     constructor() { }
 
@@ -14,10 +14,7 @@ export class ParametroController {
     async resgatarParametroRoute(
         @Body() body: any
     ) {
-        return await this.resgatarParametro.executar({
-            chave: body.chave,
-            opcoes: body.opcoes
-        });
+        return await this.cellarParametroClient.resgatarParametro(body.chave, body.opcoes);
     }
 
 }
