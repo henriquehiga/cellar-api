@@ -1,5 +1,5 @@
 import { Parametro } from "../parametro";
 
-export interface ParametroStrategy {
-    resgatarParametro(chave: string, opcoes: any): Promise<Parametro | null>;
+export interface ParametroStrategy<TOpcoes = any> {
+    resgatarParametro(chave: string, opcoes: TOpcoes): Promise<Parametro | null>;
 }
