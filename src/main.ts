@@ -10,6 +10,7 @@ async function bootstrap() {
   if (!process.env.PORT) {
     throw new Error("É obrigatório definir a porta nas variáveis de ambiente.")
   }
+  app.setGlobalPrefix('api/v1')
 
   console.info("Servidor rodando na porta aaa: " + process.env.PORT);
   await app.listen(process.env.PORT);
