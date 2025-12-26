@@ -4,11 +4,15 @@ import { ParametroStrategy } from "../strategies/parametro.strategy";
 
 export class ResgatarParametro {
     constructor(
-        readonly parametroStrategy: ParametroStrategy
+        private readonly parametroStrategy: ParametroStrategy
     ) { }
 
     async executar(input: ResgatarParametroInputDTO): Promise<ResgatarParametroOutputDTO> {
-        const parametro = await this.parametroStrategy.resgatarParametro(input.chave);
+        const parametro = await this.parametroStrategy.resgatarParametro(input.chave, input.opcoes);
+
+        if (parametro == null) {
+            return null;
+        }
 
         return {
             chave: parametro.chave,
@@ -18,8 +22,8 @@ export class ResgatarParametro {
 }
 
 export type ResgatarParametroInputDTO = {
-    provedor: string;
     chave: string;
+    opcoes: any;
 };
 
-export type ResgatarParametroOutputDTO = ParametroCompletoDTO;
+export type ResgatarParametroOutputDTO = ParametroCompletoDTO | null;

@@ -1,3 +1,4 @@
 export const ParametroSymbols = {
-    parametroStrategy: Symbol('ParametroStrategy')
+    parametroStrategy: Symbol('ParametroStrategy'),
+    resgatarParametro: Symbol('ResgatarParametro')
 }
