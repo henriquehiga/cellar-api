@@ -1,5 +1,6 @@
 import { ParametroCompletoDTO } from "./parametro";
 import { ParametroStrategy } from "./strategies/parametro.strategy";
+import { ResgatarParametro } from "./use-cases/resgatar-parametro.use-case";
 
 export interface CellarParametroClientConfig<TOpcoes = any> {
     strategy: ParametroStrategy<TOpcoes>;
@@ -13,15 +14,6 @@ export class CellarParametroClient<TOpcoes = any> {
     }
 
     async resgatarParametro(chave: string, opcoes: TOpcoes): Promise<ParametroCompletoDTO | null> {
-        const parametro = await this.strategy.resgatarParametro(chave, opcoes);
-
-        if (parametro == null) {
-            return null;
-        }
-
-        return {
-            chave: parametro.chave,
-            valor: parametro.valor
-        };
+        return new ResgatarParametro(this.strategy).executar({ chave, opcoes });
     }
 }
